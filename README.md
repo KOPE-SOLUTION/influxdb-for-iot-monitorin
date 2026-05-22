@@ -115,8 +115,9 @@ podman --version
 สร้าง Folder สำหรับเก็บข้อมูล:
 
 ```bash
-mkdir -p ~/influxdb-data
-chmod 777 ~/influxdb-data
+mkdir -p ~/.influxdb3/core/data
+mkdir -p ~/.influxdb3/core/plugins
+chmod -R 777 ~/.influxdb3
 ```
 
 ---
@@ -134,10 +135,16 @@ podman pull docker.io/library/influxdb:3-core
 ```bash
 podman run -d \
   --name influxdb \
-  -p 8086:8086 \
-  -v ~/influxdb-data:/var/lib/influxdb3:Z \
+  -p 8181:8181 \
+  -v ~/.influxdb3/core/data:/var/lib/influxdb3/data:Z \
+  -v ~/.influxdb3/core/plugins:/var/lib/influxdb3/plugins:Z \
   --restart=unless-stopped \
-  docker.io/library/influxdb:3-core
+  docker.io/library/influxdb:3-core \
+  influxdb3 serve \
+  --node-id=node0 \
+  --object-store=file \
+  --data-dir=/var/lib/influxdb3/data \
+  --plugin-dir=/var/lib/influxdb3/plugins
 ```
 
 ---
