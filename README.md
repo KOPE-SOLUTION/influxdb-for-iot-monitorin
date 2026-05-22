@@ -169,13 +169,13 @@ xxxxxxxxxxxx  docker.io/library/influxdb:latest Up 10 seconds
 เปิด Browser:
 
 ```text
-http://localhost:8086
+http://localhost:8181
 ```
 
 หรือ:
 
 ```text
-http://SERVER-IP:8086
+http://SERVER-IP:8181
 ```
 
 ---
