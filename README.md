@@ -124,7 +124,7 @@ chmod 777 ~/influxdb-data
 # Pull InfluxDB Image
 
 ```bash
-podman pull docker.io/library/influxdb:latest
+podman pull docker.io/library/influxdb:3-core
 ```
 
 ---
@@ -135,9 +135,9 @@ podman pull docker.io/library/influxdb:latest
 podman run -d \
   --name influxdb \
   -p 8086:8086 \
-  -v ~/influxdb-data:/var/lib/influxdb2:Z \
+  -v ~/influxdb-data:/var/lib/influxdb3:Z \
   --restart=unless-stopped \
-  docker.io/library/influxdb:latest
+  docker.io/library/influxdb:3-core
 ```
 
 ---
