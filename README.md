@@ -3,6 +3,8 @@
 
 ติดตั้ง InfluxDB สำหรับงาน IoT Monitoring, Smart Farm, Smart Factory และ Industrial Data Logging
 
+![thumbnail](images/thumbnail.png)
+
 ---
 
 # Overview
@@ -54,22 +56,13 @@ InfluxDB คือ Time-Series Database ที่ออกแบบมาสำ�
 
 # Architecture
 
-```text
-PLC / ESP32 / Sensor
-        |
-        v
-   MQTT Broker
-        |
-        v
-    Node-RED
-        |
-        v
-    InfluxDB
-        |
-        v
-     Grafana
+```mermaid
+flowchart LR
+    A[PLC / ESP32 / Sensor] --> B[MQTT Broker]
+    B --> C[Node-RED]
+    C --> D[InfluxDB]
+    D --> E[Grafana Dashboard]
 ```
-
 ---
 
 # Why InfluxDB?
