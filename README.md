@@ -115,9 +115,8 @@ podman --version
 สร้าง Folder สำหรับเก็บข้อมูล:
 
 ```bash
-mkdir -p ~/.influxdb3/core/data
-mkdir -p ~/.influxdb3/core/plugins
-chmod -R 777 ~/.influxdb3
+mkdir -p ~/influxdb-data
+chmod 777 ~/influxdb-data
 ```
 
 ---
@@ -125,7 +124,7 @@ chmod -R 777 ~/.influxdb3
 # Pull InfluxDB Image
 
 ```bash
-podman pull docker.io/library/influxdb:3-core
+podman pull docker.io/library/influxdb:2
 ```
 
 ---
@@ -135,16 +134,10 @@ podman pull docker.io/library/influxdb:3-core
 ```bash
 podman run -d \
   --name influxdb \
-  -p 8181:8181 \
-  -v ~/.influxdb3/core/data:/var/lib/influxdb3/data:Z \
-  -v ~/.influxdb3/core/plugins:/var/lib/influxdb3/plugins:Z \
+  -p 8086:8086 \
+  -v ~/influxdb-data:/var/lib/influxdb2:Z \
   --restart=unless-stopped \
-  docker.io/library/influxdb:3-core \
-  influxdb3 serve \
-  --node-id=node0 \
-  --object-store=file \
-  --data-dir=/var/lib/influxdb3/data \
-  --plugin-dir=/var/lib/influxdb3/plugins
+  docker.io/library/influxdb:latest
 ```
 
 ---
@@ -169,13 +162,13 @@ xxxxxxxxxxxx  docker.io/library/influxdb:latest Up 10 seconds
 เปิด Browser:
 
 ```text
-http://localhost:8181
+http://localhost:8086
 ```
 
 หรือ:
 
 ```text
-http://SERVER-IP:8181
+http://SERVER-IP:8086
 ```
 
 ---
